@@ -1,0 +1,1 @@
+data class RacingPositionModel(val carName: String, val carPosition: String)
