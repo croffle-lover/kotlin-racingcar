@@ -1,3 +1,4 @@
+import utils.BestDriverDeterminant
 import utils.StringToCarMapper
 
 class RacingCarViewModel(private val repository: RacingCarRepository) {
@@ -11,5 +12,8 @@ class RacingCarViewModel(private val repository: RacingCarRepository) {
     }
     fun getCarPosition(): List<RacingPositionModel> {
         return repository.getCarPositionState().map { it.toRacingPositionModel() }
+    }
+    fun determineBestDriver(): List<String> {
+        return BestDriverDeterminant.determineBestDriver(repository.getCarPositionState())
     }
 }

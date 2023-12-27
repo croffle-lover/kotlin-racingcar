@@ -27,5 +27,12 @@ class RacingCarGame {
             println()
         }
 
+        val finalWinner = viewModel.determineBestDriver()
+
+        if (finalWinner.size == 1) {
+            println(Instructions.MESSAGE_FINAL_WINNER + finalWinner[0])
+        } else {
+            println(Instructions.MESSAGE_FINAL_WINNER + finalWinner.joinToString(", "))
+        }
     }
 }
