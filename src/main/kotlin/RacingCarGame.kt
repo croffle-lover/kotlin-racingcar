@@ -16,5 +16,16 @@ class RacingCarGame {
 
         viewModel.setData(inputCarNames!!, inputRounds!!.toInt())
 
+        println()
+        println(Instructions.MESSAGE_GAME_RESULT_SENTENCE)
+
+        while (true) {
+            if (viewModel.checkTermination()) break
+
+            viewModel.executeRounds()
+            viewModel.getCarPosition().forEach { car -> println("${car.carName} : ${car.carPosition}")}
+            println()
+        }
+
     }
 }
