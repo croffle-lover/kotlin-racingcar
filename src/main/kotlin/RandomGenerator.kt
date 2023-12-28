@@ -1,5 +1,5 @@
 import kotlin.random.Random
 
 object RandomGenerator {
-    fun getRandomNumber():Int = Random.nextInt(0, 9)
+    fun getRandomNumber(startNumber: Int, endNumber: Int):Int = Random.nextInt(startNumber, endNumber)
 }
