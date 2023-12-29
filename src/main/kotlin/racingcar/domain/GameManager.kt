@@ -30,6 +30,7 @@ class GameManager {
             repeat(counts) {
                 cars = playOneRound(cars)
                 printPlayResult(cars)
+                println()
             }
 
             return cars
@@ -57,17 +58,17 @@ class GameManager {
 
         /* get winner(s) */
         fun getWinner(result: List<Car>) {
-            val maxPosition = result.maxBy { it.position }
+            val maxPosition = result.maxBy { it.position }.position
             val winnerList: MutableList<String> = mutableListOf()
 
             for(car in result) {
-                if(car.position.equals(maxPosition)) {
+                if(car.position == maxPosition) {
                     winnerList.add(car.name)
                 }
             }
 
-            val finalWinnerList = MESSAGE.FINAL_WINNER + winnerList.joinToString(", " )
-            println(finalWinnerList)
+            val finalWinnerList = winnerList.joinToString(", " )
+            println(MESSAGE.FINAL_WINNER + finalWinnerList)
         }
     }
 }
