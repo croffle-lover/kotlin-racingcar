@@ -35,7 +35,7 @@ class GameManager {
             return cars
         }
 
-        private fun playOneRound(cars: List<Car>): List<Car> {
+        fun playOneRound(cars: List<Car>): List<Car> {
             for(car in cars) {
                 val rand = Random.nextInt(10)
                 if(rand >= 4) {
@@ -45,7 +45,7 @@ class GameManager {
             return cars
         }
 
-        private fun printPlayResult(cars: List<Car>) {
+        fun printPlayResult(cars: List<Car>) {
             for(car in cars) {
                 print(car.name + " : ")
                 repeat(car.position) {
@@ -53,6 +53,21 @@ class GameManager {
                 }
                 println()
             }
+        }
+
+        /* get winner(s) */
+        fun getWinner(result: List<Car>) {
+            val maxPosition = result.maxBy { it.position }
+            val winnerList: MutableList<String> = mutableListOf()
+
+            for(car in result) {
+                if(car.position.equals(maxPosition)) {
+                    winnerList.add(car.name)
+                }
+            }
+
+            val finalWinnerList = MESSAGE.FINAL_WINNER + winnerList.joinToString(", " )
+            println(finalWinnerList)
         }
     }
 }
