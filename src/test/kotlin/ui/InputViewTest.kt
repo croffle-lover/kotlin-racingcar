@@ -2,18 +2,32 @@ package ui
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import racingcar.ui.InputView
 import racingcar.utils.Messages
 import racingcar.utils.Validations
+import java.io.ByteArrayInputStream
 
 class InputViewTest {
+    /* readCarNames */
+    @Test
+    fun `test readCarNames with valid input`() {
+        // Given
+        val inputString = "pobi,woni,jun"
+        System.setIn(ByteArrayInputStream(inputString.toByteArray()))
 
+        // When
+        val result = InputView.readCarNames()
+
+        // Then
+        assert(result == listOf("pobi", "woni", "jun"))
+    }
     @Test
     fun `test carInputFormat with valid input`() {
         // Given
         val validInput = "car1,car2,car3"
 
         // When
-        Validations.carInputFormat(validInput)
+        Validations.carNamesInput(validInput)
 
         // Then: No exception should be thrown
     }
@@ -25,7 +39,7 @@ class InputViewTest {
 
         // When
         val exception = assertThrows<IllegalArgumentException> {
-            Validations.carInputFormat(nullInput)
+            Validations.carNamesInput(nullInput)
         }
 
         // Then
@@ -39,7 +53,7 @@ class InputViewTest {
 
         // When
         val exception = assertThrows<IllegalArgumentException> {
-            Validations.carInputFormat(inputWithLessThanTwoCars)
+            Validations.carNamesInput(inputWithLessThanTwoCars)
         }
 
         // Then
@@ -53,7 +67,7 @@ class InputViewTest {
 
         // When
         val exception = assertThrows<IllegalArgumentException> {
-            Validations.carInputFormat(inputWithEmptyCarName)
+            Validations.carNamesInput(inputWithEmptyCarName)
         }
 
         // Then
@@ -67,10 +81,62 @@ class InputViewTest {
 
         // When
         val exception = assertThrows<IllegalArgumentException> {
-            Validations.carInputFormat(inputWithLongCarName)
+            Validations.carNamesInput(inputWithLongCarName)
         }
 
         // Then
         assert(exception.message == Messages.NOT_LONGER_THAN_5)
+    }
+
+
+    /* readTryCounts */
+    @Test
+    fun `test readTryCounts with valid input`() {
+        // Given
+        System.setIn("3".byteInputStream())
+
+        // When
+        val result = InputView.readTryCounts()
+
+        // Then
+        assert(result.equals(3))
+    }
+
+    @Test
+    fun `test readTryCounts with invalid input`() {
+        // Given
+        System.setIn("notANumber".byteInputStream())
+
+        // When
+        val exception = assertThrows<NumberFormatException> {
+            InputView.readTryCounts()
+        }
+
+        // Then
+        assert(exception.message == null) // or any other assertion based on your specific needs
+    }
+    @Test
+    fun `test tryCountsInput with valid input`() {
+        // Given
+        val validInput = "5"
+
+        // When
+        Validations.tryCountsInput(validInput)
+
+        // Then: No exception should be thrown
+    }
+
+    @Test
+    fun `test tryCountsInput with invalid input`() {
+        // Given
+        val invalidInput = "notANumber"
+
+        // When
+        val exception = assertThrows<IllegalArgumentException> {
+            Validations.tryCountsInput(invalidInput)
+        }
+
+        // Then
+        assert(exception.message == Messages.SHOULD_BE_NUMBER)
     }
 }
