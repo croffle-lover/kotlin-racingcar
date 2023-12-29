@@ -9,5 +9,7 @@ class Messages {
 
         const val TRY_COUNTS_PLEASE = "시도할 횟수는 몇 회인가요?"
         const val SHOULD_BE_NUMBER = "시도 횟수는 숫자여야 합니다."
+
+        const val MOVE_RESULT = "실행 결과"
     }
 }
