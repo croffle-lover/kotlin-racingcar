@@ -5,7 +5,8 @@ import racingcar.ui.InputView as INPUT
 class GameManager {
     companion object {
         fun startGame() {
-            val cars = INPUT.readCarNames()
+            val carNames = INPUT.readCarNames()
+            val tryCounts = INPUT.readTryCounts()
         }
     }
 }

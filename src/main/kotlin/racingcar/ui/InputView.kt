@@ -7,11 +7,20 @@ class InputView {
     companion object {
         fun readCarNames(): List<String> {
             println(MESSAGE.CAR_NAMES_PLEASE)
-            val carInput = readlnOrNull()
+            val carNamesInput = readlnOrNull()
 
-            VALIDATION.carInputFormat(carInput)
+            VALIDATION.carNamesInput(carNamesInput)
 
-            return carInput!!.trim().split(',')
+            return carNamesInput!!.trim().split(',')
+        }
+
+        fun readTryCounts(): Int {
+            println(MESSAGE.TRY_COUNTS_PLEASE)
+            val tryCountsInput = readlnOrNull()
+
+            VALIDATION.tryCountsInput(tryCountsInput)
+
+            return tryCountsInput!!.toInt()
         }
     }
 }

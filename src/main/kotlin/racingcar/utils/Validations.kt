@@ -1,19 +1,19 @@
 package racingcar.utils
 
-import racingcar.utils.Messages as MESSAGE
 import racingcar.ui.InputView as INPUT
+import racingcar.utils.Messages as MESSAGE
 
 class Validations {
     companion object {
-        fun carInputFormat(carInput: String?) {
+        fun carNamesInput(carNamesInput: String?) {
             var readAgain = 0
-            val carNames = carInput?.trim()?.split(',')
+            val carNames = carNamesInput?.trim()?.split(',')
 
-            if (carInput == null || (carNames!!.size < 2 && !carNames.contains(""))) {
+            if (carNamesInput == null || (carNames!!.size < 2 && !carNames.contains(""))) {
                 println(MESSAGE.MORE_THAN_ONE_CAR)
                 readAgain = 1
             }
-            if (carInput != null) {
+            if (carNamesInput != null) {
                 if (carNames!!.contains("")) {
                     println(MESSAGE.ANY_NAME_NEEDED)
                     readAgain = 1
@@ -26,6 +26,15 @@ class Validations {
 
             if (readAgain == 1) {
                 INPUT.readCarNames()
+            }
+        }
+
+        fun tryCountsInput(tryCountsInput: String?) {
+            val tryCounts = tryCountsInput?.toIntOrNull()
+
+            if (tryCounts == null) {
+                println(MESSAGE.SHOULD_BE_NUMBER)
+                INPUT.readTryCounts()
             }
         }
     }
