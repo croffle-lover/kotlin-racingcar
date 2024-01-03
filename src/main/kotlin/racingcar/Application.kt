@@ -1,9 +1,9 @@
 package racingcar
 
-import racingcar.domain.GameManager as GAME
+import racingcar.controller.GameManager
 
 fun main() {
-    val gameSet = GAME.setGame()
-    val result = GAME.startGame(gameSet)
-    GAME.getWinner(result)
+    GameManager.setGame()
+    GameManager.startGame()
+    GameManager.getWinner()
 }
