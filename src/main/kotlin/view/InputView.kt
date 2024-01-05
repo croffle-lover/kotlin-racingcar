@@ -9,6 +9,7 @@ class InputView(private val text: String = readln()) {
     }
 
     fun time(): Int {
+        Validator().convertNumber(text)
         return text.toInt()
     }
 
