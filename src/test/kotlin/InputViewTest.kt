@@ -26,7 +26,7 @@ class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["a", "-1", "1.4", "0", "", "\\", "test1,test2,test10"])
+    @ValueSource(strings = ["a", "-1", "1.4", "0", "", "\\", "test1,test2,test10", "test1"])
     fun `자동차 이름 입력 예외 테스트`(text: String) {
         assertThrows<IllegalArgumentException> {
             InputView(text).carName()
