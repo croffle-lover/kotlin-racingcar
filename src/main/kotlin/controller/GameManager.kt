@@ -7,7 +7,6 @@ import java.util.Random
 
 class GameManager {
 
-
     fun run() {
         inputCar()
         inputTime()
@@ -42,16 +41,15 @@ class GameManager {
     private fun gameStart() {
         for (i in 1..time) {
             carList.forEach {
-                it.upDatePosition(running())
+                it.upDatePosition(move())
             }
             OutputView().printResultRun(carList)
         }
 
     }
 
-    private fun running(): Int {
-        var random = Random()
-        if (random.nextInt(RANDOM_BOUND) >= MOVE_BOUND) return AMOUNT_MOVE
+    private fun move(number: Int = Random().nextInt(RANDOM_BOUND)): Int {
+        if (number >= MOVABLE_LOWER_BOUND) return AMOUNT_MOVE
         return DONT_MOVE
     }
 
@@ -70,7 +68,7 @@ class GameManager {
         var time = 0
         val winner = mutableListOf<String>()
         const val RANDOM_BOUND = 10
-        const val MOVE_BOUND = 4
+        const val MOVABLE_LOWER_BOUND = 4
         const val AMOUNT_MOVE = 1
         const val DONT_MOVE = 0
     }
