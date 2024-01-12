@@ -1,5 +1,7 @@
 package racingcar.model
 
+private const val MOVE_POINT = 4
+
 data class Car(
     val name: String,
     var position: Int = 0
@@ -10,7 +12,7 @@ data class Car(
         }
 
     private fun handleUpdatePosition(value: Int) {
-        if (value >= 4) {
+        if (value >= MOVE_POINT) {
             position++
         }
     }

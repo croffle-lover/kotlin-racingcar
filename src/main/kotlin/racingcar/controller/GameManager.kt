@@ -7,6 +7,8 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 import kotlin.random.Random
 
+private const val RANDOM_RANGE = 10
+
 class GameManager {
     companion object {
         private val raceList = Race()
@@ -42,7 +44,7 @@ class GameManager {
         fun playOneRound() {
             val carList = raceList.cars
             for(car in carList) {
-                val rand = Random.nextInt(10)
+                val rand = Random.nextInt(RANDOM_RANGE)
                 car.updatePosition = rand
             }
         }

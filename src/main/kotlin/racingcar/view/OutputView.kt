@@ -2,9 +2,9 @@ package racingcar.view
 
 import racingcar.model.Race
 
-const val MOVE_RESULT = "실행 결과"
-const val FINAL_WINNER = "최종 우승자: "
-const val ONE_STEP = "-"
+private const val MOVE_RESULT = "실행 결과"
+private const val FINAL_WINNER = "최종 우승자: "
+private const val ONE_STEP = "-"
 
 class OutputView {
     private val raceList = Race()
