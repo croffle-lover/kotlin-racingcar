@@ -26,7 +26,7 @@ class OutputView {
     }
 
     fun printWinners() {
-        val winnerList = raceList.getWinnerList()
+        val winnerList = raceList.winners
         println(FINAL_WINNER + winnerList.joinToString(", " ))
     }
 }

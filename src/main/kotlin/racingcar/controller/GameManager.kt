@@ -18,7 +18,7 @@ class GameManager {
             carNamesInput?.let { setCars(it) }
 
             val tryCountsInput = InputView.readTryCounts()
-            tryCounts.setTryCounts(tryCountsInput)
+            tryCounts.tryCounts = tryCountsInput
         }
 
         private fun setCars(carNames: List<String>) {
@@ -32,7 +32,7 @@ class GameManager {
         fun startGame() {
             outputView.startPrintEachResult()
 
-            val tryCounts = tryCounts.getTryCounts()
+            val tryCounts = tryCounts.tryCounts
             repeat(tryCounts) {
                 playOneRound()
                 printPlayResult()
@@ -40,21 +40,18 @@ class GameManager {
         }
 
         fun playOneRound() {
-            val carList = raceList.getCarList()
+            val carList = raceList.cars
             for(car in carList) {
                 val rand = Random.nextInt(10)
-                if(rand >= 4) {
-                    val originPosition = car.getPosition()
-                    car.updatePosition(originPosition)
-                }
+                car.updatePosition = rand
             }
         }
 
         private fun printPlayResult() {
-            val carList = raceList.getCarList()
+            val carList = raceList.cars
             for(car in carList) {
-                val carName = car.getName()
-                val position = car.getPosition()
+                val carName = car.name
+                val position = car.position
                 outputView.printCarResult(carName, position)
                 outputView.oneRoundOver()
             }
@@ -62,12 +59,12 @@ class GameManager {
 
 
         fun getWinner() {
-            val carList = raceList.getCarList()
-            val maxPosition = carList.maxBy { it.getPosition() }.getPosition()
+            val carList = raceList.cars
+            val maxPosition = carList.maxBy { it.position }.position
 
             for(car in carList) {
-                val carName = car.getName()
-                val position = car.getPosition()
+                val carName = car.name
+                val position = car.position
 
                 if(position == maxPosition) {
                     raceList.addWinnerList(carName)
