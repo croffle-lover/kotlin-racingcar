@@ -55,7 +55,7 @@ class GameManager {
                 val carName = car.name
                 val position = car.position
                 outputView.printCarResult(carName, position)
-                outputView.oneRoundOver()
+                println()
             }
         }
 

@@ -21,10 +21,6 @@ class OutputView {
         println()
     }
 
-    fun oneRoundOver() {
-        println()
-    }
-
     fun printWinners() {
         val winnerList = raceList.winners
         println(FINAL_WINNER + winnerList.joinToString(", " ))
