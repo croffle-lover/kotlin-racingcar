@@ -7,16 +7,13 @@ private const val MORE_THAN_ONE_CAR = "자동차는 두 대 이상 입력해야 
 private const val ANY_NAME_NEEDED = "자동차 이름은 반드시 입력해야 합니다."
 private const val NOT_LONGER_THAN_5 = "자동차 이름은 5자를 초과할 수 없습니다."
 
-data class Car(
-    val name: String,
+data class Car(val name: String) {
     var position: Int = 0
-) {
-    var updatePosition = 0
-        set(value) {
+        private set(value) {
             handleUpdatePosition(value)
         }
 
-    private fun handleUpdatePosition(value: Int) {
+    fun handleUpdatePosition(value: Int) {
         if (value >= MOVE_POINT) {
             position++
         }
