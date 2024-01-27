@@ -4,15 +4,24 @@ import racingcar.view.InputView
 
 private const val SHOULD_BE_NUMBER = "시도 횟수는 숫자여야 합니다."
 
-data class TryCounts(
+object TryCounts {
     var tryCounts: Int = 0
-) {
-    fun tryCountsInput(tryCountsInput: String?) {
-        val tryCounts = tryCountsInput?.toIntOrNull()
+        private set(value) {
+            setTryCounts(value)
+        }
 
-        if (tryCounts == null) {
+    fun setTryCounts(value: Int) {
+        tryCounts = value
+    }
+
+    fun tryCountsRightInput(tryCountsInput: String?): Int {
+        val tryCounts = tryCountsInput?.toIntOrNull() ?: 0
+
+        if (tryCounts == 0) {
             println(SHOULD_BE_NUMBER)
             InputView.readTryCounts()
         }
+
+        return tryCounts
     }
 }

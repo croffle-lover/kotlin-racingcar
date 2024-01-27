@@ -1,28 +1,32 @@
 package racingcar.view
 
-import racingcar.model.Race
+import racingcar.model.Car
 
 private const val MOVE_RESULT = "실행 결과"
 private const val FINAL_WINNER = "최종 우승자: "
 private const val ONE_STEP = "-"
 
-class OutputView {
-    private val raceList = Race()
+object OutputView {
 
-    fun startPrintEachResult() {
+    fun informAboutPrintingResult() {
         println(MOVE_RESULT)
     }
 
-    fun printCarResult(carName: String, position: Int) {
-        print("$carName : ")
-        repeat(position) {
-            print(ONE_STEP)
+    fun printPlayResult(cars: List<Car>) {
+        for(car in cars) {
+            print("${car.name} : ")
+            repeat(car.position) {
+                print(ONE_STEP)
+            }
         }
         println()
     }
 
-    fun printWinners() {
-        val winnerList = raceList.winners
-        println(FINAL_WINNER + winnerList.joinToString(", " ))
+    fun printWinners(winners: List<Car>) {
+        var winnerNames = ""
+        for(winner in winners) {
+            winnerNames += winner.name + ", "
+        }
+        println(FINAL_WINNER + winnerNames)
     }
 }
