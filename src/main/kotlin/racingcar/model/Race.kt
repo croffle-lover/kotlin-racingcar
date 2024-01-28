@@ -4,7 +4,7 @@ private const val MORE_THAN_ONE_CAR = "자동차는 두 대 이상 이름을 입
 
 object Race {
     private val cars: MutableList<Car> = mutableListOf()
-    fun addCarList(car: Car) {
+    fun addCarToRace(car: Car) {
         cars.add(car)
     }
 

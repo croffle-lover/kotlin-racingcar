@@ -25,7 +25,7 @@ object GameManager {
 
         for (carName in carNamesInput) {
             val car = Car.setCar(carName)
-            Race.addCarList(car)
+            Race.addCarToRace(car)
         }
     }
 
