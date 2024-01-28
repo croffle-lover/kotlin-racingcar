@@ -7,9 +7,7 @@ private const val MINIMUM_TRY_COUNTS = 1
 
 object TryCounts {
     var tryCounts: Int = 0
-        private set(value) {
-            handleSetTryCounts(value)
-        }
+        private set
 
     fun handleSetTryCounts(value: Int) {
         tryCounts = value

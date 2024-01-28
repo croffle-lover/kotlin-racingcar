@@ -11,7 +11,7 @@ object Race {
     fun playOneRound(): List<Car> {
         for (car in cars) {
             val randomNumber = RandomNumber.makeRandomNumber()
-            car.handleUpdatePosition(randomNumber)
+            car.handleMovePosition(randomNumber)
         }
 
         return cars
