@@ -30,13 +30,13 @@ object GameManager {
     }
 
     private fun getTryCountsInput() {
-        var tryCountsInput = NOT_A_NUMBER
+        var tryCountsInput: Int = NOT_A_NUMBER
         while(tryCountsInput == NOT_A_NUMBER) {
             tryCountsInput = InputView.readTryCounts().toIntOrNull() ?: NOT_A_NUMBER
             tryCountsInput = TryCounts.rightTryCountsInputValidation(tryCountsInput)
         }
 
-        TryCounts.setTryCounts(tryCountsInput)
+        TryCounts.handleSetTryCounts(tryCountsInput)
     }
     fun playGame() {
         OutputView.informAboutPrintingResult()
