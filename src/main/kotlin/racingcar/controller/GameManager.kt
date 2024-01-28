@@ -18,7 +18,7 @@ object GameManager {
     private fun getCarsInput() {
         var carNamesInput: List<String> = emptyList()
         while(carNamesInput.isEmpty()) {
-            carNamesInput = InputView.readCarNames()
+            carNamesInput = InputView.readCarNames().trim().split(',')
             carNamesInput = Race.rightRaceInputValidation(carNamesInput)
             carNamesInput = Car.rightCarInputValidation(carNamesInput)
         }
@@ -32,7 +32,7 @@ object GameManager {
     private fun getTryCountsInput() {
         var tryCountsInput = NOT_A_NUMBER
         while(tryCountsInput == NOT_A_NUMBER) {
-            tryCountsInput = InputView.readTryCounts()
+            tryCountsInput = InputView.readTryCounts().toIntOrNull() ?: NOT_A_NUMBER
             tryCountsInput = TryCounts.rightTryCountsInputValidation(tryCountsInput)
         }
 
