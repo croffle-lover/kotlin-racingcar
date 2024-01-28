@@ -1,8 +1,5 @@
 package racingcar.model
 
-import kotlin.random.Random
-
-private const val RANDOM_RANGE = 10
 private const val MORE_THAN_ONE_CAR = "자동차는 두 대 이상 이름을 입력해야 합니다."
 
 object Race {
@@ -13,13 +10,12 @@ object Race {
 
     fun playOneRound(): List<Car> {
         for (car in cars) {
-            val randomNumber = Random.nextInt(RANDOM_RANGE)
+            val randomNumber = RandomNumber.makeRandomNumber()
             car.handleUpdatePosition(randomNumber)
         }
 
         return cars
     }
-
 
     fun getWinner(): List<Car> {
         val maxPosition = cars.maxBy { it.position }.position
