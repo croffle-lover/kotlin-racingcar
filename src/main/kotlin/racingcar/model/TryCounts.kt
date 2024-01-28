@@ -1,8 +1,9 @@
 package racingcar.model
 
-import racingcar.view.InputView
-
 private const val SHOULD_BE_NUMBER = "시도 횟수는 숫자여야 합니다."
+
+private const val NOT_A_NUMBER = 0
+private const val MINIMUM_TRY_COUNTS = 1
 
 object TryCounts {
     var tryCounts: Int = 0
@@ -14,14 +15,11 @@ object TryCounts {
         tryCounts = value
     }
 
-    fun tryCountsRightInput(tryCountsInput: String?): Int {
-        val tryCounts = tryCountsInput?.toIntOrNull() ?: 0
-
-        if (tryCounts == 0) {
+    fun rightTryCountsInputValidation(tryCounts: Int): Int {
+        if (tryCounts < MINIMUM_TRY_COUNTS) {
             println(SHOULD_BE_NUMBER)
-            InputView.readTryCounts()
+            return NOT_A_NUMBER
         }
-
         return tryCounts
     }
 }
