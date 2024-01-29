@@ -3,6 +3,8 @@ package modelTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import racingcar.model.Car
 
 private const val MOVE_POINT = 4
@@ -34,17 +36,21 @@ class CarTest {
         assertThat(error.message).isEqualTo(carName + LONGER_THAN_5)
     }
 
-    @Test
-    fun `자동차는 무작위 값이 4 이상인 경우 전진한다`() {
+    @ValueSource(ints = [0,4,9])
+    @ParameterizedTest
+    fun `자동차는 무작위 값이 4 이상인 경우 전진한다`(number: Int) {
         //given
         val car = Car("hyun")
 
         //when
-        car.handleMovePosition(MOVE_POINT)
-        car.handleMovePosition(MOVE_POINT - 1)
+        car.handleMovePosition(number)
 
         //then
-        assertThat(car.position).isEqualTo(MOVED_ONCE)
+        if(number< MOVE_POINT) {
+            assertThat(car.position).isEqualTo(MOVED_ONCE - 1)
+        }
+        else
+            assertThat(car.position).isEqualTo(MOVED_ONCE)
     }
 
     @Test
