@@ -14,7 +14,7 @@ class CarTest {
         val carName = "hyun"
 
         //when
-        val car = Car.setCar(carName)
+        val car = Car(carName)
 
         //then
         assertThat(car.name).isEqualTo(carName)
@@ -26,7 +26,7 @@ class CarTest {
         val car = listOf("nuyh_hyun", "hyun")
 
         //when
-        val carValidation = Car.rightCarInputValidation(car)
+        val carValidation = Car("dummy").rightCarInputValidation(car)
 
         //then
         assertThat(carValidation).isEmpty()
@@ -35,7 +35,7 @@ class CarTest {
     @Test
     fun `자동차는 무작위 값이 4 이상인 경우 전진한다`() {
         //given
-        val car = Car.setCar("hyun")
+        val car = Car("hyun")
 
         //when
         car.handleMovePosition(MOVE_POINT)
@@ -48,7 +48,7 @@ class CarTest {
     @Test
     fun `자동차는 자신의 위치를 가진다`() {
         //given
-        val car = Car.setCar("hyun")
+        val car = Car("hyun")
 
         //when
         repeat(2) {
