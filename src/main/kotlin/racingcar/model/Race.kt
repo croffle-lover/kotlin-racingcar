@@ -3,7 +3,8 @@ package racingcar.model
 private const val MORE_THAN_ONE_CAR = "자동차는 두 대 이상 이름을 입력해야 합니다."
 
 object Race {
-    private val cars: MutableList<Car> = mutableListOf()
+    var cars: MutableList<Car> = mutableListOf()
+        private set
     fun addCarToRace(car: Car) {
         cars.add(car)
     }
