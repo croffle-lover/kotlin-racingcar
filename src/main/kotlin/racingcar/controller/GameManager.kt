@@ -19,7 +19,6 @@ object GameManager {
         while(carNamesInput.isEmpty()) {
             carNamesInput = InputView.readCarNames().trim().split(',')
             carNamesInput = Race.rightRaceInputValidation(carNamesInput)
-            carNamesInput = Car("dummy").rightCarInputValidation(carNamesInput)
         }
 
         for (carName in carNamesInput) {

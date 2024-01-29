@@ -2,10 +2,12 @@ package modelTest
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import racingcar.model.Car
 
 private const val MOVE_POINT = 4
 private const val MOVED_ONCE = 1
+private const val LONGER_THAN_5 = " : 자동차 이름은 5자를 초과할 수 없습니다."
 
 class CarTest {
     @Test
@@ -23,13 +25,13 @@ class CarTest {
     @Test
     fun `자동차 이름은 5자를 초과할 수 없다`() {
         //given
-        val car = listOf("nuyh_hyun", "hyun")
+        val carName = "nuyh-hyun"
 
         //when
-        val carValidation = Car("dummy").rightCarInputValidation(car)
+        val error = assertThrows<IllegalArgumentException> { Car(carName) }
 
         //then
-        assertThat(carValidation).isEmpty()
+        assertThat(error.message).isEqualTo(carName + LONGER_THAN_5)
     }
 
     @Test
