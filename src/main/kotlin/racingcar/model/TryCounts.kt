@@ -13,7 +13,8 @@ object TryCounts {
         tryCounts = value
     }
 
-    fun rightTryCountsInputValidation(tryCounts: Int): Int {
+    fun rightTryCountsInputValidation(tryCountsInput: String): Int {
+        val tryCounts = tryCountsInput.toIntOrNull() ?: NOT_A_NUMBER
         if (tryCounts < MINIMUM_TRY_COUNTS) {
             println(SHOULD_BE_NUMBER)
             return NOT_A_NUMBER

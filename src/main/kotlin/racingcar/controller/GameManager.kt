@@ -9,7 +9,6 @@ import racingcar.view.OutputView
 private const val NOT_A_NUMBER = 0
 
 object GameManager {
-
     fun setGame() {
         getCarsInput()
         getTryCountsInput()
@@ -20,23 +19,23 @@ object GameManager {
         while(carNamesInput.isEmpty()) {
             carNamesInput = InputView.readCarNames().trim().split(',')
             carNamesInput = Race.rightRaceInputValidation(carNamesInput)
-            carNamesInput = Car.rightCarInputValidation(carNamesInput)
+            carNamesInput = Car("dummy").rightCarInputValidation(carNamesInput)
         }
 
         for (carName in carNamesInput) {
-            val car = Car.setCar(carName)
+            val car = Car(carName)
             Race.addCarToRace(car)
         }
     }
 
     private fun getTryCountsInput() {
-        var tryCountsInput: Int = NOT_A_NUMBER
-        while(tryCountsInput == NOT_A_NUMBER) {
-            tryCountsInput = InputView.readTryCounts().toIntOrNull() ?: NOT_A_NUMBER
-            tryCountsInput = TryCounts.rightTryCountsInputValidation(tryCountsInput)
+        var tryCounts: Int = NOT_A_NUMBER
+        while(tryCounts == NOT_A_NUMBER) {
+            val tryCountsInput = InputView.readTryCounts()
+            tryCounts = TryCounts.rightTryCountsInputValidation(tryCountsInput)
         }
 
-        TryCounts.handleSetTryCounts(tryCountsInput)
+        TryCounts.handleSetTryCounts(tryCounts)
     }
     fun playGame() {
         OutputView.informAboutPrintingResult()
