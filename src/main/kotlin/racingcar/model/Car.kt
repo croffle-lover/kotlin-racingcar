@@ -11,7 +11,7 @@ class Car(val name: String) {
     var position: Int = 0
         private set
 
-    fun handleMovePosition(value: Int) {
+    fun move(value: Int) {
         if (value >= MOVE_POINT) {
             position++
         }

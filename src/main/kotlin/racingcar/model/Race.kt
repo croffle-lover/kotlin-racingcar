@@ -12,7 +12,7 @@ object Race {
     fun playOneRound(): List<Car> {
         for (car in cars) {
             val randomNumber = RandomNumber.makeRandomNumber()
-            car.handleMovePosition(randomNumber)
+            car.move(randomNumber)
         }
 
         return cars
@@ -24,7 +24,7 @@ object Race {
         return cars.filter { it.position == maxPosition }
     }
 
-    fun rightRaceInputValidation(carNames: List<String>): List<String> {
+    fun validateRaceInput(carNames: List<String>): List<String> {
         if (carNames.isEmpty() || carNames.size < 2 || carNames.contains("")) {
             println(MORE_THAN_ONE_CAR)
             return emptyList()

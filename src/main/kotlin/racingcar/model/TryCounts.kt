@@ -9,11 +9,11 @@ object TryCounts {
     var tryCounts: Int = 0
         private set
 
-    fun handleSetTryCounts(value: Int) {
+    fun setTryCounts(value: Int) {
         tryCounts = value
     }
 
-    fun rightTryCountsInputValidation(tryCountsInput: String): Int {
+    fun validateCarName(tryCountsInput: String): Int {
         val tryCounts = tryCountsInput.toIntOrNull() ?: NOT_A_NUMBER
         if (tryCounts < MINIMUM_TRY_COUNTS) {
             println(SHOULD_BE_NUMBER)

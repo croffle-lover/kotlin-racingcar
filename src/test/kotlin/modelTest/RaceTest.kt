@@ -14,7 +14,7 @@ class RaceTest {
         val race = listOf("hyun")
 
         //when
-        val raceValidation = Race.rightRaceInputValidation(race)
+        val raceValidation = Race.validateRaceInput(race)
 
         //then
         assertThat(raceValidation).isEmpty()
@@ -46,7 +46,7 @@ class RaceTest {
 
         //when
         repeat(3) {
-            car1.handleMovePosition(MOVE_POINT)
+            car1.move(MOVE_POINT)
         }
         race.playOneRound()
 
@@ -65,7 +65,7 @@ class RaceTest {
         race.addCarToRace(car2)
 
         //when
-        car1.handleMovePosition(MOVE_POINT)
+        car1.move(MOVE_POINT)
         val winner = race.getWinner()
 
         //then

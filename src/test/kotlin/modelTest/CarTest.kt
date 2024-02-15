@@ -42,7 +42,7 @@ class CarTest {
         val car = Car("hyun")
 
         //when
-        car.handleMovePosition(number)
+        car.move(number)
 
         //then
         assertThat(car.position).isEqualTo(expectedPosition)
@@ -55,7 +55,7 @@ class CarTest {
 
         //when
         repeat(2) {
-            car.handleMovePosition(MOVE_POINT)
+            car.move(MOVE_POINT)
         }
 
         //then
