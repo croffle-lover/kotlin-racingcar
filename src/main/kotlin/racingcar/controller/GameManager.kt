@@ -32,7 +32,7 @@ object GameManager {
         var tryCounts: Int = NOT_A_NUMBER
         while(tryCounts == NOT_A_NUMBER) {
             val tryCountsInput = InputView.readTryCounts()
-            tryCounts = TryCounts.validateCarName(tryCountsInput)
+            tryCounts = TryCounts.validateTryCounts(tryCountsInput)
         }
 
         TryCounts.setTryCounts(tryCounts)
