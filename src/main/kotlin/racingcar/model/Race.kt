@@ -4,8 +4,12 @@ private const val MORE_THAN_ONE_CAR = "자동차는 두 대 이상 이름을 입
 private const val CAR_NAME_SPLIT_POINT = ','
 
 class Race(private val carNames: String) {
-    private val cars: List<Car> = carNames.trim().split(CAR_NAME_SPLIT_POINT)
-        .map { name -> Car(name)}
+    val cars: List<Car>
+
+    init {
+        cars = carNames.split(CAR_NAME_SPLIT_POINT)
+            .map { name -> Car(name.trim())}
+    }
 
     fun playOneRound(): List<Car> {
         for (car in cars) {

@@ -2,7 +2,6 @@ package modelTest
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.model.Car
 import racingcar.model.Race
 
 private const val MOVE_POINT = 4
@@ -11,64 +10,55 @@ class RaceTest {
     @Test
     fun `경주에 참여할 자동차는 두 대 이상이어야 한다`() {
         //given
-        val race = listOf("hyun")
+        val cars = "hyun"
 
         //when
-        val raceValidation = Race.validateRaceInput(race)
+        val raceValidation = Race(cars).validateRaceInput()
 
         //then
         assertThat(raceValidation).isEmpty()
     }
 
     @Test
-    fun `경주에 참여하는 자동차들을 목록에 추가할 수 있다`() {
+    fun `여러 대의 자동차 이름은 쉼표(,)를 기준으로 구분한다`() {
         //given
-        val race = Race
-        val car1 = Car("hyun")
-        val car2 = Car("hy")
+        val cars = "hyun, hy, un"
 
         //when
-        Race.addCarToRace(car1)
-        Race.addCarToRace(car2)
+        val race = Race(cars)
 
         //then
-        assertThat(race.cars).isEqualTo(listOf(car1, car2))
+        assertThat(race.cars.map { it.name }).isEqualTo(listOf("hyun", "hy", "un"))
     }
 
     @Test
     fun `한 시도에 n대의 자동차는 각각 전진 또는 멈출 수 있다`() {
         //given
-        val race = Race
-        val car1 = Car("hyun")
-        val car2 = Car("hy")
-        race.addCarToRace(car1)
-        race.addCarToRace(car2)
+        val cars = "hyun, hy"
+        val race = Race(cars)
 
         //when
         repeat(3) {
-            car1.move(MOVE_POINT)
+            race.cars.first().move(MOVE_POINT)
         }
         race.playOneRound()
 
         //then
-        assertThat(car1.position).isIn(3, 4)
-        assertThat(car2.position).isIn(0, 1)
+        assertThat(race.cars.first().position).isIn(3, 4)
+        assertThat(race.cars.last().position).isIn(0, 1)
     }
 
     @Test
     fun `최종 우승자를 구할 수 있다`() {
         //given
-        val race = Race
-        val car1 = Car("hyun")
-        val car2 = Car("hy")
-        race.addCarToRace(car1)
-        race.addCarToRace(car2)
+        val cars = "hyun, hy"
+        val race = Race(cars)
 
         //when
-        car1.move(MOVE_POINT)
+        race.cars.first().move(MOVE_POINT)
         val winner = race.getWinner()
 
         //then
-        assertThat(winner).isEqualTo(listOf(car1))
+        assertThat(winner).isEqualTo(race.cars.first().name)
     }
 }
