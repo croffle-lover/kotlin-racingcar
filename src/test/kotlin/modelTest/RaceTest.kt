@@ -60,6 +60,6 @@ class RaceTest {
         val winner = race.getWinner()
 
         //then
-        assertThat(winner).isEqualTo(race.cars.first().name)
+        assertThat(winner).isEqualTo(listOf(race.cars.first()))
     }
 }
