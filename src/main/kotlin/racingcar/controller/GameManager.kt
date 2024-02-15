@@ -1,30 +1,29 @@
 package racingcar.controller
 
-import racingcar.model.Car
 import racingcar.model.Race
 import racingcar.model.TryCounts
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 private const val NOT_A_NUMBER = 0
-private const val CAR_NAME_SPLIT_POINT = ','
 
 object GameManager {
-    fun setGame() {
+    private var carNames: String = ""
+
+    fun startGame() {
+        setGame()
+        playGame(Race(carNames))
+    }
+
+    private fun setGame() {
         getCarsInput()
         getTryCountsInput()
     }
 
     private fun getCarsInput() {
-        var carNamesInput: List<String> = emptyList()
-        while(carNamesInput.isEmpty()) {
-            carNamesInput = InputView.readCarNames().trim().split(CAR_NAME_SPLIT_POINT)
-            carNamesInput = Race.validateRaceInput(carNamesInput)
-        }
-
-        for (carName in carNamesInput) {
-            val car = Car(carName)
-            Race.addCarToRace(car)
+        while(carNames == "") {
+            val carNamesInput = InputView.readCarNames()
+            carNames = Race(carNamesInput).validateRaceInput()
         }
     }
 
@@ -37,15 +36,15 @@ object GameManager {
 
         TryCounts.setTryCounts(tryCounts)
     }
-    fun playGame() {
+    private fun playGame(race: Race) {
         OutputView.informAboutPrintingResult()
 
         repeat(TryCounts.tryCounts) {
-            val cars = Race.playOneRound()
+            val cars = race.playOneRound()
             OutputView.printPlayResult(cars)
         }
 
-        val winners = Race.getWinner()
+        val winners = race.getWinner()
         OutputView.printWinners(winners)
     }
 }

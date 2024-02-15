@@ -1,13 +1,11 @@
 package racingcar.model
 
 private const val MORE_THAN_ONE_CAR = "자동차는 두 대 이상 이름을 입력해야 합니다."
+private const val CAR_NAME_SPLIT_POINT = ','
 
-object Race {
-    var cars: MutableList<Car> = mutableListOf()
-        private set
-    fun addCarToRace(car: Car) {
-        cars.add(car)
-    }
+class Race(private val carNames: String) {
+    private val cars: List<Car> = carNames.trim().split(CAR_NAME_SPLIT_POINT)
+        .map { name -> Car(name)}
 
     fun playOneRound(): List<Car> {
         for (car in cars) {
@@ -24,10 +22,10 @@ object Race {
         return cars.filter { it.position == maxPosition }
     }
 
-    fun validateRaceInput(carNames: List<String>): List<String> {
-        if (carNames.isEmpty() || carNames.size < 2 || carNames.contains("")) {
+    fun validateRaceInput(): String {
+        if (cars.isEmpty() || cars.size < 2 || cars.contains(Car(""))) {
             println(MORE_THAN_ONE_CAR)
-            return emptyList()
+            return ""
         }
         return carNames
     }
