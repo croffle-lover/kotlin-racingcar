@@ -3,6 +3,7 @@ package modelTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.model.Race
+import racingcar.model.RandomNumber
 
 private const val MOVE_POINT = 4
 
@@ -41,7 +42,7 @@ class RaceTest {
         repeat(3) {
             race.cars.first().move(MOVE_POINT)
         }
-        race.playOneRound()
+        race.playOneRound(RandomNumber)
 
         //then
         assertThat(race.cars.first().position).isIn(3, 4)
