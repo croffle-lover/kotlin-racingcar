@@ -13,7 +13,7 @@ class TryCountsTest {
         val tryCountsInput = 5
 
         //when
-        TryCounts.handleSetTryCounts(tryCountsInput)
+        TryCounts.setTryCounts(tryCountsInput)
 
         //then
         assertThat(TryCounts.tryCounts).isEqualTo(5)
@@ -25,7 +25,7 @@ class TryCountsTest {
         val tryCountsInput ="세 번"
 
         //when
-        val tryCounts = TryCounts.rightTryCountsInputValidation(tryCountsInput)
+        val tryCounts = TryCounts.validateTryCounts(tryCountsInput)
 
         //then
         assertThat(tryCounts).isEqualTo(NOT_A_NUMBER)

@@ -13,7 +13,7 @@ object TryCounts {
         tryCounts = value
     }
 
-    fun validateCarName(tryCountsInput: String): Int {
+    fun validateTryCounts(tryCountsInput: String): Int {
         val tryCounts = tryCountsInput.toIntOrNull() ?: NOT_A_NUMBER
         if (tryCounts < MINIMUM_TRY_COUNTS) {
             println(SHOULD_BE_NUMBER)
