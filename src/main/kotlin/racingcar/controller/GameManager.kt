@@ -1,7 +1,6 @@
 package racingcar.controller
 
 import racingcar.model.Race
-import racingcar.model.RandomNumber
 import racingcar.model.TryCounts
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -41,7 +40,7 @@ object GameManager {
         OutputView.informAboutPrintingResult()
 
         repeat(TryCounts.tryCounts) {
-            val cars = race.playOneRound(RandomNumber)
+            val cars = race.playOneRound()
             OutputView.printPlayResult(cars)
         }
 

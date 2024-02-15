@@ -11,9 +11,10 @@ class Race(private val carNames: String) {
             .map { name -> Car(name.trim())}
     }
 
-    fun playOneRound(numberGenerator: NumberGenerator): List<Car> {
-        cars.forEach {car ->
-            car.move(numberGenerator.generateNumber())
+    fun playOneRound(): List<Car> {
+        for (car in cars) {
+            val randomNumber = RandomNumber.makeRandomNumber()
+            car.move(randomNumber)
         }
 
         return cars
