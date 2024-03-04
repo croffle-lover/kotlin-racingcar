@@ -3,7 +3,6 @@ package modelTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
-import racingcar.model.NumberGenerator
 import racingcar.model.Race
 
 private const val MOVE_POINT = 4
@@ -40,11 +39,7 @@ class RaceTest {
         val race = Race(cars)
 
         //when
-        race.playOneRound(object: NumberGenerator{
-            override fun generateRandomNumber(): Int {
-                return MOVE_POINT
-            }
-        })
+        race.playOneRound { MOVE_POINT }
 
         //then
         assertAll(
