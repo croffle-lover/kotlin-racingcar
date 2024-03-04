@@ -1,5 +1,7 @@
 package racingcar.controller
 
+import racingcar.model.MakeRandomNumber
+import racingcar.model.NumberGenerator
 import racingcar.model.Race
 import racingcar.model.TryCounts
 import racingcar.view.InputView
@@ -12,7 +14,8 @@ object GameManager {
 
     fun startGame() {
         setGame()
-        playGame(Race(carNames))
+        val numberGenerator = MakeRandomNumber
+        playGame(Race(carNames), numberGenerator)
     }
 
     private fun setGame() {
@@ -36,11 +39,11 @@ object GameManager {
 
         TryCounts.setTryCounts(tryCounts)
     }
-    private fun playGame(race: Race) {
+    private fun playGame(race: Race, numberGenerator: NumberGenerator) {
         OutputView.informAboutPrintingResult()
 
         repeat(TryCounts.tryCounts) {
-            val cars = race.playOneRound()
+            val cars = race.playOneRound(numberGenerator)
             OutputView.printPlayResult(cars)
         }
 
