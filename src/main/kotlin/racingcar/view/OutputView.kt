@@ -23,10 +23,7 @@ object OutputView {
     }
 
     fun printWinners(winners: List<Car>) {
-        var winnerNames = ""
-        for(winner in winners) {
-            winnerNames += winner.name + ", "
-        }
+        val winnerNames = winners.joinToString(", ") { it.name }
         println(FINAL_WINNER + winnerNames)
     }
 }
