@@ -3,9 +3,11 @@ package modelTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import org.junit.jupiter.api.assertThrows
 import racingcar.model.Race
 
 private const val MOVE_POINT = 4
+private const val MORE_THAN_ONE_CAR = "자동차는 두 대 이상 이름을 입력해야 합니다."
 
 class RaceTest {
     @Test
@@ -14,10 +16,10 @@ class RaceTest {
         val cars = "hyun"
 
         //when
-        val raceValidation = Race(cars).validateRaceInput()
+        val error: IllegalArgumentException = assertThrows { Race(cars).validateRaceInput() }
 
         //then
-        assertThat(raceValidation).isEmpty()
+        assertThat(error.message).isEqualTo(MORE_THAN_ONE_CAR)
     }
 
     @Test

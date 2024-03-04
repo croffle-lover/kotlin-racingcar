@@ -7,42 +7,43 @@ import racingcar.model.TryCounts
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-private const val NOT_A_NUMBER = 0
-
 object GameManager {
-    private var carNames: String = ""
 
     fun startGame() {
-        setGame()
+        val carNames = getCarNamesInput()
+        val tryNumber = getTryCountsInput()
         val numberGenerator = MakeRandomNumber
-        playGame(Race(carNames), numberGenerator)
+
+        playGame(Race(carNames), tryNumber, numberGenerator)
     }
 
-    private fun setGame() {
-        getCarsInput()
-        getTryCountsInput()
-    }
+    private fun getCarNamesInput(): String {
+        val carNamesInput = InputView.readCarNames()
 
-    private fun getCarsInput() {
-        while(carNames == "") {
-            val carNamesInput = InputView.readCarNames()
-            carNames = Race(carNamesInput).validateRaceInput()
-        }
-    }
-
-    private fun getTryCountsInput() {
-        var tryCounts: Int = NOT_A_NUMBER
-        while(tryCounts == NOT_A_NUMBER) {
-            val tryCountsInput = InputView.readTryCounts()
-            tryCounts = TryCounts.validateTryCounts(tryCountsInput)
+        try {
+            Race(carNamesInput).validateRaceInput()
+        } catch (_: IllegalArgumentException) {
+            getCarNamesInput()
         }
 
-        TryCounts.setTryCounts(tryCounts)
+        return carNamesInput
     }
-    private fun playGame(race: Race, numberGenerator: NumberGenerator) {
+
+    private fun getTryCountsInput(): Int {
+        val tryCountsInput = InputView.readTryCounts()
+
+        try {
+            TryCounts(tryCountsInput).validateTryCountsInput()
+        } catch (_: IllegalArgumentException) {
+            getTryCountsInput()
+        }
+
+        return tryCountsInput.toInt()
+    }
+    private fun playGame(race: Race, tryCounts: Int, numberGenerator: NumberGenerator) {
         OutputView.informAboutPrintingResult()
 
-        repeat(TryCounts.tryCounts) {
+        repeat(tryCounts) {
             val cars = race.playOneRound(numberGenerator)
             OutputView.printPlayResult(cars)
         }
